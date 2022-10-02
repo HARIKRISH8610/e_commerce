@@ -1,0 +1,17 @@
+.navbar-css {
+  background-color: white;
+}
+.navbar-collapse {
+  justify-content: end;
+}
+.navbar_sidebar_container {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.navbar_container {
+  width: 75%;
+  position: absolute;
+  right: 0;
+  top: 0;
+}

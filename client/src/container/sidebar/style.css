@@ -1,0 +1,10 @@
+.sidebar_div {
+  width: 25%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  border-right: 1px solid gray;
+}
