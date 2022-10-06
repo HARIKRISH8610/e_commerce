@@ -1,12 +1,14 @@
 import React from "react";
 import Navbar from "./container/navbar/Navbar";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle";
+import { BrowserRouter } from "react-router-dom";
+import Router from "./container/router/Router";
 
 function App() {
   return (
     <div>
-      <Navbar />
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
     </div>
   );
 }

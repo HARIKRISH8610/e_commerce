@@ -1,0 +1,23 @@
+.login-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-card-container {
+  width: 60%;
+  height: 400px;
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-card-inner {
+  width: 70%;
+}
