@@ -9,7 +9,11 @@ router.route("/login").post(authController.login);
 
 router
   .route("/")
-  .get(authController.authorization, userController.getUsers)
+  .get(
+    authController.authorization,
+    authController.protectFrom(["user", "lead"]),
+    userController.getUsers
+  )
   .post(authController.signUp);
 
 router.route("/:id").get(userController.getOneUser);

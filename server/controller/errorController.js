@@ -1,11 +1,16 @@
 const AppError = require("../utils/AppError");
 
-const validationError = (err, res) => {
-  let error;
+const validationError = (err, res, next) => {
+  let error = [];
   for (field in err.errors) {
-    error = err.errors[field].message;
+    console.log(error);
+    error.push(err.errors[field].message);
   }
-  return new AppError(error, 400);
+  res.status(400).json({
+    status: "failed",
+    error: error,
+  });
+  // return next(new AppError(error, 400));
 };
 const allerrors = (err, res) => {
   res.status(err.statusCode).json({
@@ -67,10 +72,10 @@ const TokenExpiredError = (err, res) => {
 };
 module.exports = (err, req, res, next) => {
   const error = { ...err };
-  console.log("errorcontroller", error, err);
+  console.log("errorcontroller", error);
   if (process.env.NODE_ENV === "development") {
     if (err._message === "User validation failed")
-      return validationError(error, res);
+      return validationError(error, res, next);
     if (err.code === 11000) return duplicateDevError(error, res);
     if (err.name === "CastError") return castDevError(error, res);
     if (err.name === "JsonWebTokenError") return JsonWebTokenError(error, res);

@@ -68,7 +68,14 @@ exports.authorization = catchAsync(async (req, res, next) => {
   if (!currentUser) {
     return next(new AppError("This user is not belongs to this token!", 401));
   }
-  req.user = currentUser.id;
+  req.user = currentUser;
 
   next();
 });
+
+exports.protectFrom = (role) => {
+  return (req, res, next) => {
+    console.log(role);
+    console.log(req.user);
+  };
+};
