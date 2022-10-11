@@ -6,6 +6,10 @@ const authController = require("../controller/authContoller");
 const router = express.Router();
 
 router.route("/login").post(authController.login);
+router.route("/signup").post(authController.signUp);
+
+router.route("/forgotPassword").post(authController.forgotPassword);
+router.route("/resetPassword/:token").patch(authController.resetToken);
 
 router
   .route("/")
@@ -13,9 +17,14 @@ router
     authController.authorization,
     authController.protectFrom(["user", "lead"]),
     userController.getUsers
-  )
-  .post(authController.signUp);
+  );
 
-router.route("/:id").get(userController.getOneUser);
+router
+  .route("/:id")
+  .get(
+    authController.authorization,
+    authController.protectFrom(["user", "lead"]),
+    userController.getOneUser
+  );
 
 module.exports = router;
