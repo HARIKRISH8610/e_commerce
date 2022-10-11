@@ -1,0 +1,30 @@
+.crud_inner_div {
+  width: 80%;
+  display: flex;
+  gap: 20px;
+}
+.crud_input_div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.crud_input {
+  width: 100%;
+}
+
+.table_crud {
+  width: 100%;
+  text-align: left;
+  background-color: lemonchiffon;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+.table_crud th {
+  background-color: goldenrod;
+  color: white;
+}
+.table_crud td,
+.table_crud th {
+  padding: 10px;
+  border: 1px solid goldenrod;
+}

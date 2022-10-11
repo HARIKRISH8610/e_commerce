@@ -11,3 +11,7 @@
   background-color: rgba(128, 128, 128, 0.7);
   color: black;
 }
+.danger {
+  background-color: red;
+  color: white;
+}
