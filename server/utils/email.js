@@ -1,22 +1,42 @@
 const nodemailer = require("nodemailer");
+const fs = require("fs");
+const { promisify } = require("util");
+const path = require("path");
+const express = require("express");
 
 const sentMail = async (data) => {
   console.log(data);
-
+  // const readfile = promisify(fs.readFile);
+  // const readfile = express.static(
+  //   path.join(__dirname, "/server/utils/contract_created/contract_created.html")
+  // );
+  const createStream = fs.readFileSync(
+    "utils/contract_created/contract_created.html"
+  );
+  console.log(createStream);
   let transporter = nodemailer.createTransport({
-    host: "smtp.ethereal.email",
-    port: 587,
+    service: "gmail",
     auth: {
-      user: "kamryn.feil@ethereal.email",
-      pass: "3Yx4BFDZdBkrZHE1Re",
+      user: "harikrishnapons@gmail.com",
+      pass: "fipdigafjxfjzzht",
     },
   });
-  await transporter.sendMail({
+  //data.to
+  const mailed = await transporter.sendMail({
     from: '"Fred Foo 👻" <kamryn.feil@ethereal.email>', // sender address
-    to: data.to, // list of receivers
+    to: "harikrishna.vcet@gmail.com", // list of receivers
     subject: data.subject, // Subject line
     text: data.text,
+    attachments: [
+      {
+        filename: "logo.jpg",
+        path: `utils/contract_created/logo.png`,
+        cid: "logo1", //same cid value as in the html img src
+      },
+    ],
+    html: createStream,
   });
+  console.log(mailed);
 };
 
 module.exports = sentMail;
